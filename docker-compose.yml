@@ -1,0 +1,30 @@
+version: "3.9"
+   
+services:
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: dbb2user
+      WORDPRESS_DB_PASSWORD: passwordb2
+      WORDPRESS_DB_NAME: dbb2
+    volumes:
+      - /home/ubuntu/wordpress/config:/var/www/html
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: dbb2
+      MYSQL_USER: dbb2user
+      MYSQL_PASSWORD: passwordb2
+      MYSQL_RANDOM_ROOT_PASSWORD: 'ROOT'
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+  wordpress:
+  db:
